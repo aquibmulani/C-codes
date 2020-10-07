@@ -1,26 +1,13 @@
+//#include"Tic-Tac.h"
 #include<iostream>
-#include<vector>
+#include "Tic-Tac.h"
 
 
+//#include<vector>
 
 
-using namespace std;
-
-
-class Tic_tac_toe
+Tic_tac_toe :: Tic_tac_toe(int size_of_matrix)
 {
-	private:
-			int size_of_matrix;		
-			vector<vector <char>> current_matrix; 		
-			vector<int> row;	
-			vector<int> col;	
-			vector<char> get_col;
-			int left_diagonal;
-			int right_diagonal;
-			
-	public:
-		Tic_tac_toe(int size_of_matrix)
-		{
 			this -> size_of_matrix = size_of_matrix;
 			row = vector<int> (this->size_of_matrix,0);
 			col = vector<int> (this->size_of_matrix,0);		
@@ -32,11 +19,10 @@ class Tic_tac_toe
 			left_diagonal =0;
 			right_diagonal =0;
 		
-		}
-		
-		
-		int move(int row, int col, int player,char ip)
-		{
+}
+
+int Tic_tac_toe:: move(int row, int col, int player,char ip)
+{
 			int move = (player==1) ? 1 : -1;
 
 			if(current_matrix[row][col] == ' ')
@@ -69,22 +55,21 @@ class Tic_tac_toe
 			{
 				return 2;
 			}
+
 		return 0;
 
-		}	
-		
-		
-		void print_current_matrix()
-		{
+}	
+
+void Tic_tac_toe ::  print_current_matrix()
+{
 			cout<<"|"<<current_matrix[0][0]<<"|" << current_matrix[0][1]	<<"|" << current_matrix[0][2]<<"|"<<"\n";
 			cout<<"|"<<current_matrix[1][0]<<"|" << current_matrix[1][1]	<<"|" << current_matrix[1][2]<<"|"<<"\n";
 			cout<<"|"<<current_matrix[2][0]<<"|" << current_matrix[2][1]	<<"|" << current_matrix[2][2]<<"|"<<"\n\n";
 		
-		}			
-
-
-		void start_game()
-		{
+}			
+		
+void Tic_tac_toe:: start_game()
+{
 		   int result =0;
 		   int count =0;
 		   int row =0, column =0;
@@ -127,18 +112,25 @@ class Tic_tac_toe
 		{   
 			cout<<"It's a Tie";			
 		}
-		}	
+}	
 
-};
 
-int main()
-{
-	Tic_tac_toe object1(3);
-	object1.start_game();
-	
 
-return 0;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
