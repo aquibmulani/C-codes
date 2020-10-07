@@ -37,28 +37,29 @@ class Tic_tac_toe
 		
 		int move(int row, int col, int player,char ip)
 		{
+			int move = (player==1) ? 1 : -1;
+
 			if(current_matrix[row][col] == ' ')
 			{
 				current_matrix[row][col] = ip;
 			}
 			else if(current_matrix[row][col] == 'X' || current_matrix[row][col] == '0')
 			{
-				cerr<<"Place Already filled \n";
-//				return 0;
+				cerr<<"Place Already filled, choose another place \n";
+		
 			}
-			int move = (player==1) ? 1 : -1;
+
 			this -> row[row]+= move;
 			this -> col[col]+= move;
 			if(row == col)
 			{
 				left_diagonal+= move;
 			}
-			else if (row == (this -> size_of_matrix-1-col))
+			
+			if (row == (this -> size_of_matrix-1-col))  
 			{
 				right_diagonal+= move;
 			}
-			cout<<"RD:" <<right_diagonal<<"\n";
-			cout<<"LD:" <<left_diagonal<<"\n";
 
 			if(this -> row[row] == this-> size_of_matrix || this->col[col] == this-> size_of_matrix || left_diagonal == this-> size_of_matrix || right_diagonal == this-> size_of_matrix)
 			{
@@ -69,6 +70,7 @@ class Tic_tac_toe
 				return 2;
 			}
 		return 0;
+
 		}	
 		
 		
@@ -86,21 +88,31 @@ class Tic_tac_toe
 		   int result =0;
 		   int count =0;
 		   int row =0, column =0;
-		   while(count != ((this->size_of_matrix * this->size_of_matrix)+1))
+		   while(count != ((this->size_of_matrix * this->size_of_matrix)/2)+1)
 		   {
 		   		cout<<"Player 1 : Choose a square";
 		   		cin>> row >> column;
+		   		if(current_matrix[row][column] == 'X' || current_matrix[row][column] == '0')
+		   		{
+		   			cout<< "Square already filled,Player 1 choose again :";
+		   			cin>> row >> column;
+		   		}
 		   		result = move(row,column,1,'X');
 		   		print_current_matrix();
-					if(result == 1)
-					{
-						cout<<"Player 1 wins";
-						break;
-					}
-
-						   		
+				if(result == 1)
+				{
+					cout<<"Player 1 wins";
+					break;
+				}
+		   		
 				cout<<"Player 2 : Choose a square";
 		   		cin>> row >> column;
+				if(current_matrix[row][column] == 'X' || current_matrix[row][column] == '0')
+		   		{
+		   			cout<< "Square already filled,Player 2 choose again :";
+		   			cin>> row >> column;
+		   		}
+
 		   		result = move(row,column,2,'0');
 		   		print_current_matrix();
 				if(result == 2)
@@ -108,7 +120,8 @@ class Tic_tac_toe
 					cout<<"Player 2 wins";
 					break;
 				}
-		   		count+=1;
+			
+		   	count++;
 		   }
 		if(result == 0)
 		{   
@@ -121,19 +134,6 @@ class Tic_tac_toe
 int main()
 {
 	Tic_tac_toe object1(3);
-/*	object1.move(0, 1, 1,'X');
-	object1.print_current_matrix();
-	object1.move(0, 0, 2,'0');
-	object1.print_current_matrix();
-	object1.move(0, 2, 1,'X');
-	object1.print_current_matrix();
-	object1.move(1, 1, 2,'0');
-	object1.print_current_matrix();
-	object1.move(0, 2, 1,'X');
-	object1.print_current_matrix();
-	result = object1.move(2, 2, 2,'0');
-	object1.print_current_matrix();
-*/
 	object1.start_game();
 	
 
