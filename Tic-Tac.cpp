@@ -3,63 +3,117 @@
 
 
 
+
 using namespace std;
 
 
 class Tic_tac_toe
 {
 	private:
-			int matrix_size;		
+			int size_of_matrix;		
 			vector<vector <char>> current_matrix; 		
 			vector<int> row;	
 			vector<int> col;	
 			vector<char> get_col;
-		
+			int left_diagonal;
+			int right_diagonal;
+			
 	public:
 		Tic_tac_toe(int size_of_matrix)
 		{
-			matrix_size = size_of_matrix;
-			row = vector<int> (matrix_size,0);
-			col = vector<int> (matrix_size,0);		
-			get_col  = vector<char> (matrix_size,' '); 
-			for(int i =0; i < matrix_size;i++)
+			this -> size_of_matrix = size_of_matrix;
+			row = vector<int> (this->size_of_matrix,0);
+			col = vector<int> (this->size_of_matrix,0);		
+			get_col  = vector<char> (this->size_of_matrix,' '); 
+			for(int i =0; i < this->size_of_matrix;i++)
 			{
 				current_matrix.push_back(get_col); 
 			}
-			int left_diagonal =0;
-			int right_diagonal =0;
+			left_diagonal =0;
+			right_diagonal =0;
+		
 		}
 		
 		
-		int move(int ip_row, int ip_col, int player,char ip)
+		int move(int row, int col, int player,char ip)
 		{
-			if(current_matrix[ip_row][ip_col] == ' ')
+			if(current_matrix[row][col] == ' ')
 			{
-				current_matrix[ip_row][ip_col] = ip;
+				current_matrix[row][col] = ip;
 			}
-			else if(current_matrix[ip_row][ip_col] == 'X' || current_matrix[row][col] == '0')
+			else if(current_matrix[row][col] == 'X' || current_matrix[row][col] == '0')
 			{
 				cerr<<"Place Already filled \n";
+//				return 0;
 			}
-			
-		
+			int move = (player==1) ? 1 : -1;
+			this -> row[row]+= move;
+			this -> col[col]+= move;
+			if(row == col)
+			{
+				left_diagonal+= move;
+			}
+			else if (row == (this -> size_of_matrix-1-col))
+			{
+				right_diagonal+= move;
+			}
+			cout<<"RD:" <<right_diagonal<<"\n";
+			cout<<"LD:" <<left_diagonal<<"\n";
+
+			if(this -> row[row] == this-> size_of_matrix || this->col[col] == this-> size_of_matrix || left_diagonal == this-> size_of_matrix || right_diagonal == this-> size_of_matrix)
+			{
+				return 1;
+			}
+			else if(this -> row[row] == -this-> size_of_matrix || this->col[col] == -this-> size_of_matrix || left_diagonal == -this-> size_of_matrix || right_diagonal == -this-> size_of_matrix)
+			{
+				return 2;
+			}
 		return 0;
 		}	
+		
 		
 		void print_current_matrix()
 		{
 			cout<<"|"<<current_matrix[0][0]<<"|" << current_matrix[0][1]	<<"|" << current_matrix[0][2]<<"|"<<"\n";
 			cout<<"|"<<current_matrix[1][0]<<"|" << current_matrix[1][1]	<<"|" << current_matrix[1][2]<<"|"<<"\n";
-			cout<<"|"<<current_matrix[2][0]<<"|" << current_matrix[2][1]	<<"|" << current_matrix[2][2]<<"|"<<"\n";
+			cout<<"|"<<current_matrix[2][0]<<"|" << current_matrix[2][1]	<<"|" << current_matrix[2][2]<<"|"<<"\n\n";
 		
 		}			
 
 
 		void start_game()
 		{
-		
-		
-		
+		   int result =0;
+		   int count =0;
+		   int row =0, column =0;
+		   while(count != ((this->size_of_matrix * this->size_of_matrix)+1))
+		   {
+		   		cout<<"Player 1 : Choose a square";
+		   		cin>> row >> column;
+		   		result = move(row,column,1,'X');
+		   		print_current_matrix();
+					if(result == 1)
+					{
+						cout<<"Player 1 wins";
+						break;
+					}
+
+						   		
+				cout<<"Player 2 : Choose a square";
+		   		cin>> row >> column;
+		   		result = move(row,column,2,'0');
+		   		print_current_matrix();
+				if(result == 2)
+				{
+					cout<<"Player 2 wins";
+					break;
+				}
+		   		count+=1;
+		   }
+		if(result == 0)
+		{   
+			cout<<"It's a Tie";			
+		}
 		}	
 
 };
@@ -67,12 +121,21 @@ class Tic_tac_toe
 int main()
 {
 	Tic_tac_toe object1(3);
-	object1.move(0, 0, 1,'X');
-	object1.move(0, 1, 1,'0');
-	
+/*	object1.move(0, 1, 1,'X');
 	object1.print_current_matrix();
-
-
+	object1.move(0, 0, 2,'0');
+	object1.print_current_matrix();
+	object1.move(0, 2, 1,'X');
+	object1.print_current_matrix();
+	object1.move(1, 1, 2,'0');
+	object1.print_current_matrix();
+	object1.move(0, 2, 1,'X');
+	object1.print_current_matrix();
+	result = object1.move(2, 2, 2,'0');
+	object1.print_current_matrix();
+*/
+	object1.start_game();
+	
 
 return 0;
 }
