@@ -73,7 +73,7 @@ void Tic_tac_toe:: start_game()
 		   int result =0;
 		   int count =0;
 		   int row =0, column =0;
-		   while(count != ((this->size_of_matrix * this->size_of_matrix)/2)+1)
+		   while(count != ((this->size_of_matrix * this->size_of_matrix)/2))
 		   {
 		   		cout<<"Player 1 : Choose a square";
 		   		cin>> row >> column;
