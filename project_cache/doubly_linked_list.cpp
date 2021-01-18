@@ -22,9 +22,9 @@ bool doubly_linked_list:: create_list(int value)
 		temp -> previous = NULL;
 		start = temp;
 		end = start;
-		return true;
+		return 1;
 	}
-return false;	
+return 0;	
 }
 
 bool doubly_linked_list :: add_begining(int value)
@@ -48,9 +48,9 @@ bool doubly_linked_list :: add_begining(int value)
 		{
 			end = end -> next;
 		}
-		return true;
+		return 1;
 	}
-return false;
+return 0;
 }
 
 
@@ -73,10 +73,10 @@ bool doubly_linked_list :: add_end(int value)
 		temp -> next = NULL;
 		temp -> previous = end;
 		end = temp;
-		return true;
+		return 1;
 	}
 	
-return false;
+return 0;
 }
 
 
@@ -87,7 +87,7 @@ bool doubly_linked_list :: add_middle(int value, int element_to_be_added_after)
 	if(start == NULL)
 	{
 		cerr<<"Create the initial node first";
-		return false;
+		return 0;
 	}
 	else
 	{
@@ -106,10 +106,10 @@ bool doubly_linked_list :: add_middle(int value, int element_to_be_added_after)
 		temp -> previous = traverse;
 		traverse -> next = temp;
 		marker -> previous = temp;
-		return true;
+		return 1;
 	}
 
-return false;
+return 0;
 }
 
 
@@ -134,6 +134,7 @@ bool doubly_linked_list::delete_node(int key)
 		start = start -> next;			
 		start -> previous = NULL;
 		delete temp;
+		return 1;
 	}
 	else if(temp -> next == NULL)
 	{
@@ -141,6 +142,7 @@ bool doubly_linked_list::delete_node(int key)
 		end = end -> previous;
 		end -> next = NULL;
 		delete end;
+		return 1;
 	}
 	else
 	{
@@ -149,6 +151,7 @@ bool doubly_linked_list::delete_node(int key)
 		temp -> next = extra_ptr->next;
 		extra_ptr = extra_ptr -> next;
 		extra_ptr -> previous = temp;
+		return 1;
 	}
 	return 0;
 }

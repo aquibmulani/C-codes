@@ -8,7 +8,6 @@ using namespace std;
 int main()
 {
 	caches my_cache_1(10);
-//	cout<<"Here";
 	my_cache_1.put(1,9);
 	my_cache_1.put(2,10);
 	my_cache_1.put(3,100);
@@ -23,11 +22,16 @@ int main()
 	cout<<endl;
 	my_cache_1.print_cache();
 
+	my_cache_1.put(1,9);
+	my_cache_1.put(1,9);
+	my_cache_1.put(1,9);
+	my_cache_1.put(1,9);
 
 	my_cache_1.put(33,10000000);
 	my_cache_1.put(34,10000000);
 	my_cache_1.put(35,10000000);
 	my_cache_1.put(33,10000100);
+	my_cache_1.put(34,10000000);
 
 	cout<<endl;
 	my_cache_1.print_cache();

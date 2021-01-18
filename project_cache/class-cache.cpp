@@ -1,17 +1,6 @@
 #include<iostream>
 #include "class-cache.h"
-//#include "doubly_linked_list.h"
 
-
-
-
-
-/*
-  		int get(int);
-  		void put(int,int);
-		void hit();
-		void miss();
-		void print_cache(); 	*/
 
 caches :: caches(int cache_size)
 {
@@ -30,14 +19,21 @@ int caches:: get(int key)
 {
 	if(key_register.empty())
 	{
-				cerr<<"Cache Empty\n";
+		cerr<<"Cache Empty\n";
 	}
   	
   	if(key_register[key])
   	{
   		track_keys.delete_node(key);
-  		track_keys.add_end(key);
+  		
+  		if(track_keys.add_end(key))
+  		{
 		return key_register[key];  	
+		}
+		else
+		{
+			cerr<<"Failed to enter in cache";
+		}
   	}
  	
  	return -1;
@@ -51,16 +47,35 @@ void caches::put(int key, int value)
 	{
 	  	if(key_register[key])
 	  	{	
-	  		track_keys.delete_node(key);
-	  		track_keys.add_end(key);
-	  		key_register[key]= value;	
+	  		if(!(track_keys.delete_node(key)))
+	  		{
+				cerr<<"Failed to remove entry from cache";
+
+	  		}
+	  		
+	  		if(track_keys.add_end(key))
+	  		{
+		  		key_register[key]= value;	
+	  		}
+	  		else
+	  		{
+				cerr<<"Failed to enter in cache";
+
+	  		}
 		}
 		else
 		{
 			key_register.erase(track_keys.front_of_list());
 			track_keys.delete_front_of_list();
-	  		track_keys.add_end(key);
-	  		key_register[key]= value;	
+	  		if(track_keys.add_end(key))
+	  		{
+		  		key_register[key]= value;	
+	  		}
+	  		else
+	  		{
+				cerr<<"Failed to enter in cache";
+
+	  		}
 		
 		}
 	}
@@ -71,14 +86,27 @@ void caches::put(int key, int value)
 	  	{	
 	  		//cout<<"Here";
 	  		track_keys.delete_node(key);
-	  		track_keys.add_end(key);
-	  		key_register[key]= value;	
+	  		if(track_keys.add_end(key))
+	  		{
+		  		key_register[key]= value;	
+	  		}
+	  		else
+	  		{
+				cerr<<"Failed to enter in cache";
+
+	  		}
 		}
 		else
 		{	
-//			cout<<"Here";
-	  		track_keys.add_end(key);
-	  		key_register[key]= value;			
+	  		if(track_keys.add_end(key))
+	  		{
+		  		key_register[key]= value;	
+	  		}
+	  		else
+	  		{
+				cerr<<"Failed to enter in cache";
+
+	  		}
 		}
 	}
 
