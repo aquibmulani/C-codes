@@ -13,6 +13,7 @@ vector<int>  duplicate_elem(int * ip_array,int arr_size)
 		if(ip_array[abs(ip_array[i])] > 0)
 		{
 			ip_array[abs(ip_array[i])] = - ip_array[abs(ip_array[i])];
+			cout<<"\t"<<i<<"\n";
 		}
 		else
 		{
@@ -37,8 +38,8 @@ int main()
 	
 	//cout<< std::hex <<"Set:" <<dummy_var;
 	vector<int> print_val;
-	int ip_array[] = {1,2,3,1,4,4,5,6,6,6}; 
-	print_val = duplicate_elem(ip_array,10);
+	int ip_array[] = {1,2,3,1,4,4,5,6,6,100,100}; 
+	print_val = duplicate_elem(ip_array,11);
 
 	for(int i =0; i < print_val.size();i++)
 	{
