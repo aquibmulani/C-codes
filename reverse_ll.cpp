@@ -27,6 +27,39 @@ Node *reverse_linked_list(Node * head)
       return head;
 }
 
+
+
+Node *reverse_linked_list_recursive(Node * head)
+{
+	if(head == NULL || head -> next == NULL)
+	{
+		return head;
+	}
+	
+	Node * temp = reverse_linked_list_recursive(head -> next);
+	head -> next -> next = head;
+	head -> next = NULL;
+	
+	return temp;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main()
 {
 
@@ -48,7 +81,7 @@ int main()
  fourth -> next = NULL;
   
   Node * new_head = NULL;
-  new_head = reverse_linked_list(head);
+  new_head = reverse_linked_list_recursive(head);//reverse_linked_list(head);
  
   while(new_head != NULL)
   {

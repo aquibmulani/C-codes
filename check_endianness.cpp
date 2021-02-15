@@ -6,9 +6,9 @@ using namespace std;
 
 void method_1()
 {
- char a = 0x01;
+ int a = 1;
  char * point;
- point = &a;
+ point =(char *) &a;
  
  if(*point)
  {
@@ -46,7 +46,7 @@ void method_2()
 int main()
 {
  
-method_2();
+method_1();
 
 
 return 0;

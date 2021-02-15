@@ -5,6 +5,13 @@
 int main()
 {
 
+int i=300;
+char *ptr;
+ptr = &i;
+*(++ptr)=2;
+printf("Apna jugad : %d",i);
+
+
         int arr[] = {10, 20};
         int *p = arr;
         ++*p;          // is equivalent to  ++(*p)
