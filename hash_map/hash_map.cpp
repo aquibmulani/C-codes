@@ -1,5 +1,5 @@
 #include<iostream>
-#include<"hash_map.h">
+#include "hash_map.h"
 
 
 
@@ -43,7 +43,7 @@ int hash_map::get(int key)
 
 
 
-bool remove(int key)
+bool hash_map:: remove(int key)
 {
 	for(int i =0; i < map_structure.size();i++)
 	{
