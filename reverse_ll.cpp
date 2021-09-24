@@ -45,21 +45,6 @@ Node *reverse_linked_list_recursive(Node * head)
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int main()
 {
 

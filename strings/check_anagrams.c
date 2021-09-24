@@ -44,7 +44,7 @@ return 1;
 
 int main()
 {
-printf("%d",is_anagram("abcdeg","abcded"));
+printf("%d",is_anagram("abcdeg","degcab"));
 
 
 return 0;
