@@ -3,9 +3,6 @@
 
 
 
-
-
-
 bool hash_map::put(int key, int value)
 {
 	bool found_flag = false;
